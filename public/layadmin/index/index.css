@@ -1,3 +1,30 @@
+/*菜单滑出效果*/
+.menu-hide .layui-side {
+    width: 0;
+    transition: width 500ms, transform 500ms;
+    -moz-transition: width 500ms, -moz-transform 500ms;
+    -webkit-transition: width 500ms, -webkit-transform 500ms;
+    -o-transition: width 500ms, -o-transform 500ms;
+}
+.menu-hide .layui-body, .menu-hide .layui-footer {
+    left: 0;
+    transition: left 500ms, transform 500ms;
+    -moz-transition: left 500ms, -moz-transform 500ms;
+    -webkit-transition: left 500ms, -webkit-transform 500ms;
+    -o-transition: left 500ms, -o-transform 500ms;
+}
+.layui-side {
+    width: 200px;
+    -moz-transition: width 500ms, -moz-transform 500ms;
+    -webkit-transition: width 500ms, -webkit-transform 500ms;
+    -o-transition: width 500ms, -o-transform 500ms;
+}
+.layui-body, .layui-footer {
+    left: 200px;
+    -moz-transition: left 500ms, -moz-transform 500ms;
+    -webkit-transition: left 500ms, -webkit-transform 500ms;
+    -o-transition: left 500ms, -o-transform 500ms;
+}
 /*响应式*/
 @media screen and (max-width:1050px){
     /*天气，头像*/
@@ -7,12 +34,13 @@
     /*logo,水平导航*/
     .layui-logo, .min-hide{ display: none !important; }
     /*左侧导航*/
-    .layui-layout-admin .layui-side{ left:-260px; }
+    .layui-layout-admin .layui-side{ left:-260px; transition: left 500ms, transform 500ms;-webkit-transition: left 500ms, -webkit-transform 500ms; }
     .site-tree-mobile {display: block!important; position: fixed; z-index: 100000; bottom: 15px; left: 15px; width: 50px; height: 50px; line-height: 50px; border-radius: 2px; text-align: center; background-color: rgba(0,0,0,.7); color: #fff;}
     .layui-body,.layui-layout-admin .layui-footer{ left:0; }
     /*菜单弹出*/
-    .site-mobile.layui-side{ left: 0; z-index:9999; }
-    .site-mobile.site-mobile-shade { content: ''; position: fixed; top: 0; bottom: 0; left: 0; right: 0; background-color: rgba(0,0,0,.8); z-index: 999;}
+    .site-mobile .layui-side{ left: 0; z-index:9999; transition: left 500ms, transform 500ms;-webkit-transition: left 500ms, -webkit-transform 500ms;}
+    .site-mobile .site-mobile-shade { content: ''; position: fixed; top: 0; bottom: 0; left: 0; right: 0; background-color: rgba(0,0,0,.8); z-index: 999;}
+    .site-mobile .site-tree-mobile { display: none !important; }
 }
 @media screen and (max-width:432px){
     .orinfy-msg {position: relative; left: -330%;}
