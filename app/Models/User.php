@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class User extends \Illuminate\Foundation\Auth\User
 {
@@ -40,16 +41,16 @@ class User extends \Illuminate\Foundation\Auth\User
         return ($has === 0) ? true : false;
     }
 
-    public function getUserRules(int $userId, bool $isNew = false) : array
+    public function getUserRules(bool $isNew = false) : array
     {
-        if ($isNew || !session($this->rulesCacheKey)) $this->cacheRules($userId);
-        return session($this->rulesCacheKey);
+        if ($isNew || !Session::has($this->rulesCacheKey)) $this->cacheRules($this->id);
+        return Session::get($this->rulesCacheKey);
     }
 
     public function cacheRules(int $userId)
     {
         $rules = $this->getRules($userId);
-        session([$this->rulesCacheKey => $rules]);
+        Session::put($this->rulesCacheKey, $rules);
     }
 
     public function getRules(int $userId) : array
@@ -68,17 +69,16 @@ class User extends \Illuminate\Foundation\Auth\User
         return array_merge($rules, $suRules);
     }
 
-    public function getUserMenu(int $userId, bool $isNew = false) : array
+    public function getUserMenu(bool $isNew = false) : array
     {
-        return Rule::where('type', 1)->get()->toArray();
-        if ($isNew || !session($this->menuCacheKey)) $this->cacheMenu($userId);
-        return session($this->menuCacheKey);
+        if ($isNew || !Session::has($this->menuCacheKey)) $this->cacheMenu($this->id);
+        return Session::get($this->menuCacheKey);
     }
 
     public function cacheMenu(int $userId)
     {
         $menu = $this->getMenu($userId);
-        session([$this->menuCacheKey => $menu]);
+        Session::put($this->menuCacheKey, $menu);
     }
 
     public function getMenu(int $userId) : array
@@ -93,10 +93,16 @@ class User extends \Illuminate\Foundation\Auth\User
         // 获取不需要认证的菜单
         $suMenu = Rule::where('check', 0)->where('type', 1)
             ->select('id', 'title', 'href', 'rule', 'pid', 'icon', 'sort', 'level')->get()->toArray();
-        $menu = array_merge($menu, $suMenu);
+        $menu = array_merge($suMenu, $menu);
         usort($menu, function ($a, $b) {
             return $a['sort'] <=> $b['sort'];
         });
         return $menu;
+    }
+
+    public function cleanUserData()
+    {
+        Session::forget($this->rulesCacheKey);
+        Session::forget($this->menuCacheKey);
     }
 }

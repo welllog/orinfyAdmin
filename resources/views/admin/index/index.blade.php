@@ -26,10 +26,10 @@
             <li class="layui-nav-item min-hide"><a href="">控制台</a></li>
             <li class="layui-nav-item orinfy-msg"><a href="">消息<span class="layui-badge-dot"></span></a></li>
             <li class="layui-nav-item min-hide">
-                <a href="javascript:;">其它系统</a>
+                <a href="javascript:;">缓存</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="https://github.com/cly00/MusicStory" target="_blank">前台页面</a></dd>
-                    <dd><a href="/clouds" target="_blank">云中遨游</a></dd>
+                    <dd><a id="flush-cache" data-url="{{ route('cache.flush') }}" data-type="PUT">刷新缓存</a></dd>
+                    <dd><a id="clean-cache" data-url="{{ route('cache.clean') }}" data-type="DELETE">清除缓存</a></dd>
                 </dl>
             </li>
         </ul>
@@ -105,11 +105,12 @@
     layui.config({
         base: '/layadmin/base/'
     });
-    layui.use(['element','dialog', 'cms'], function(){
+    layui.use(['element', 'ori', 'cms'], function(){
         var element = layui.element,
             layer = layui.layer,
             dialog = layui.dialog,
-            $ = layui.jquery;
+            $ = layui.jquery
+            ori = layui.ori;
 
         var cms = layui.cms('left-nav', 'top-tab');
         var menu = {!! $menu !!};
@@ -166,6 +167,16 @@
                 'title': '修改密码',
                 'content': $(this).attr('data-url'),
             });
+        });
+
+        $('#flush-cache').click(function () {
+            ori.submit($(this), '', function () {
+                location.reload();
+            });
+        });
+
+        $('#clean-cache').click(function () {
+            ori.submit($(this));
         });
 
     });

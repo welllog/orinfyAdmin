@@ -17,6 +17,7 @@
 				<col>
 				<col>
 				<col>
+				<col width="40">
 				<col width="80">
 				<col width="80">
 				<col width="150">
@@ -28,6 +29,7 @@
 					<th style="text-align:left;">权限名称</th>
 					<th style="text-align:left;">链接</th>
 					<th style="text-align:left;">权限</th>
+					<th>是否为菜单</th>
 					<th>是否验证权限</th>
 					<th>排序</th>
 					<th>操作</th>
@@ -41,6 +43,7 @@
 					<td style="text-align:left;">{{ $rule['ltitle'] }}</td>
 					<td style="text-align:left;">{{ $rule['href'] }}</td>
 					<td style="text-align:left;">{{ $rule['rule'] }}</td>
+					<td>@if($rule['type'] == 1) <span style="color: #6CB778;">是</span> @else <span style="color: #ff9a3f;">否</span> @endif</td>
 					<td>
 						<input data-url="{{ route('rule.update', ['rule' => $rule['id']]) }}" data-type="PATCH" type="checkbox" lay-skin="switch" lay-text="是|否" lay-filter="isCheck"
 							   @if ($rule['check'] == 1) checked @endif>

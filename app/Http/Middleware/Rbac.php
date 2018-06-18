@@ -2,7 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use App\Exceptions\OrException;
 use Closure;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 class Rbac
 {
@@ -15,10 +18,12 @@ class Rbac
      */
     public function handle($request, Closure $next)
     {
-        header('Access-Control-Allow-Origin: *');
-        header("Access-Control-Allow-Credentials: true");
-        header("Access-Control-Allow-Methods: *");
-        header("Access-Control-Allow-Headers: Origin,Content-Type,Access-Token,Cookie,Accept");
+        $routeName = Route::currentRouteName();
+        $rules = Auth::guard('web')->user()->getUserRules();
+        if (!in_array($routeName, $rules)) {
+            if ($request->expectsJson()) return ajaxError('您没有权限', OrException::NOT_PERMISSION);
+            return redirect()->route('403');
+        }
         return $next($request);
     }
 }
