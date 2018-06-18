@@ -1,3 +1,12 @@
+.layui-header {height: 50px;}  /*头部高度*/
+.layui-layout-admin .layui-side, .layui-layout-admin .layui-body{top: 50px;} /*左侧导航跟内容距顶部距离*/
+.layui-layout-admin .layui-body {bottom: 30px;} /*内容距底部距离*/
+.layui-layout-admin .layui-logo, .layui-nav .layui-nav-item {line-height: 50px;} /*头部文字*/
+.layui-layout-admin .layui-footer {height: 30px; line-height: 30px; font-size: 12px;} /*底部*/
+.layui-tab-title {height: 35px;} /*选项卡高度*/
+.layui-tab-title li {font-size: 13px; line-height: 35px;} /*选项卡文字*/
+.layui-tab-title .layui-this:after {height: 36px;} /*选项卡选中线高度*/
+.layui-tab-content {padding: 2px;}
 /*菜单滑出效果*/
 .menu-hide .layui-side {
     width: 0;
@@ -15,16 +24,21 @@
 }
 .layui-side {
     width: 200px;
+    transition: width 500ms, transform 500ms;
     -moz-transition: width 500ms, -moz-transform 500ms;
     -webkit-transition: width 500ms, -webkit-transform 500ms;
     -o-transition: width 500ms, -o-transform 500ms;
 }
 .layui-body, .layui-footer {
     left: 200px;
+    transition: left 500ms, transform 500ms;
     -moz-transition: left 500ms, -moz-transform 500ms;
     -webkit-transition: left 500ms, -webkit-transform 500ms;
     -o-transition: left 500ms, -o-transform 500ms;
 }
+cite {margin-left: 6px;}
+.menu-2 {margin-left: 6%;}
+.menu-3 {margin-left: 12%;}
 /*响应式*/
 @media screen and (max-width:1050px){
     /*天气，头像*/

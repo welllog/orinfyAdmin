@@ -14,12 +14,13 @@ layui.define(['layer','element', 'fortree'], function(exports) {
     /**
      * 添加导航
      */
-    function addNav(data, topid, idname, pidname, nodename, urlname) {
+    function addNav(data, topid, idname, pidname, nodename, urlname, iconname) {
         topid    = topid    || 0;
         idname   = idname   || 'id';
         pidname  = pidname  || 'pid';
         nodename = nodename || 'node';
         urlname  = urlname  || 'url';
+        iconname = iconname || 'icon';
 
         var mytree = new fortree(data, idname, pidname, topid);
         var html = '';
@@ -33,8 +34,8 @@ layui.define(['layer','element', 'fortree'], function(exports) {
         };
 
         mytree.forcurr = function(v, k, hasChildren) {
-            html += '<a href="javascript:;"'+(v[urlname] && !hasChildren ? ' data-url="'+v[urlname]+'" data-id="'+v[idname]+'"' : '')+'>';
-            html += v[nodename];
+            html += '<a href="javascript:;"'+(v[urlname] && !hasChildren ? ' data-url="'+v[urlname]+'" data-id="'+v[idname]+'"' : '')+' class="menu-'+v['level']+'">';
+            html += (v[iconname] ? '<i class="layui-icon">' + v[iconname] + '</i>' : '') + '<cite>' + v[nodename] + '</cite>';
             html += '</a>';
         };
 
@@ -82,7 +83,7 @@ layui.define(['layer','element', 'fortree'], function(exports) {
          * 监听侧边栏导航点击事件
          */
         element.on('nav('+navfilter+')', function(elem) {
-            var title    = $(elem).text();
+            var title    = $(elem).find('cite').text();
             var src      = $(elem).attr('data-url');
             var id       = $(elem).attr('data-id');
             addTab(id, title, src);
@@ -105,7 +106,7 @@ layui.define(['layer','element', 'fortree'], function(exports) {
                 //获取iframe身上的tab index
                 tabindex = iframe.attr('data-tabindex');
             }else{ //不存在 iframe
-                if ($('.tab-window').length >= 5) {
+                if (tabcontent.find('.tab-window').length >= 5) {
                     layer.msg('窗口数量达到上限,请关闭不用的窗口');
                     return;
                 }

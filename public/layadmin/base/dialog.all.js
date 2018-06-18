@@ -21,11 +21,8 @@ layui.define('layer', function (exports) {
     }
 
     Dialog.prototype.load = function (msg) {
-        return layer.msg(msg, {
-            icon: 16
-            , shade: 0.01
-            , time: false
-        });
+        var index = msg ? layer.msg(msg, {icon: 16, shade: 0.01, time: false}) : layer.load()
+        return index;
     }
 
     Dialog.prototype.confirm = function (msg, callable1, callable2) {

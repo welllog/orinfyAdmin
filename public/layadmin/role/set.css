@@ -1,0 +1,6 @@
+ul.ztree>li{background: rgba(160, 215, 255, 0.4);padding: 8px;}
+ul.ztree>li ul li{background: #ceffe6;margin-top: 8px;padding: 5px;}
+ul.ztree>li ul li ul li{background: #e3ffff;padding: 5px;}
+ul.ztree>li ul li ul li ul li{background: #f7ffec;padding: 5px;}
+ul.ztree ul ul ul li{display:inline-block;}
+ul.ztree>li>a>span{font-size:15px;font-weight:700}

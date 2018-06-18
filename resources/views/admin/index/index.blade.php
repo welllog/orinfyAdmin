@@ -59,16 +59,17 @@
             <li class="layui-nav-item avt-hide">
                 <a href="javascript:;">
                     <img src="{{ asset('layadmin/index/face.jpg') }}" class="layui-nav-img">
-                    <span>admin</span>
+                    <span>{{ $user->username }}</span>
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="#" target="content">基本资料</a></dd>
-                    <dd><a href="javascript:void(0);" id="model">安全设置</a></dd>
+                    <dd><a href="javascript:void(0);" id="pwd-set" data-url="{{ route('user.safe', ['user' => $user->id]) }}">
+                            安全设置
+                        </a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item">
                 <form name="out" method="post">
-                    <a href="javascript:document.out.submit();" >退出</a>
+                    <a href="{{ route('logout') }}" >退出</a>
                 </form>
             </li>
         </ul>
@@ -104,25 +105,18 @@
     layui.config({
         base: '/layadmin/base/'
     });
-    layui.use(['element','layer', 'cms'], function(){
+    layui.use(['element','dialog', 'cms'], function(){
         var element = layui.element,
-            layer = layui.layer;
-        $ = layui.jquery;
+            layer = layui.layer,
+            dialog = layui.dialog,
+            $ = layui.jquery;
 
         var cms = layui.cms('left-nav', 'top-tab');
+        var menu = {!! $menu !!};
         // 添加菜单
-        cms.addNav([
-            {id: 1, pid: 0, node: '主页', url: 'main.html'},
-            {id: 7, pid: 0, node: '登录', url: 'signin.html'},
-            {id: 2, pid: 0, node: '搜索引擎', url: 'http://baidu.com'},
-            {id: 3, pid: 2, node: '百度', url: 'https://www.baidu.com/'},
-            {id: 4, pid: 2, node: '必应', url: 'http://cn.bing.com/'},
-            {id: 5, pid: 2, node: '360', url: 'https://www.so.com/'},
-            {id: 6, pid: 2, node: '搜狗', url: 'https://www.sogou.com/'},
-            {id: 8, pid: 6, node: 'lida', url: 'https://www.baidu.com/'},
-        ], 0, 'id', 'pid', 'node', 'url');
+        cms.addNav(menu, 0, 'id', 'pid', 'title', 'href');
 
-        cms.bind(60 + 41 + 20 + 44); //头部高度 + 顶部切换卡标题高度 + 顶部切换卡内容padding + 底部高度
+        cms.bind(50 + 36 + 4 + 30); //头部高度 + 顶部切换卡标题高度 + 顶部切换卡内容padding + 底部高度
         // 默认打开窗口
         cms.clickNavId(1);
 
@@ -167,6 +161,12 @@
         //     ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">' +
         //     '注意啦，各位亲！<br>当前项目部署在亚马逊的免费服务器上，而且是国外的所以速度有点蜗牛<br><br>当前VIP用户所属的是管理员角色，请不要对此角色进行停用修改删除，否则重新登录之后就看不到东西了<br><br>新增菜单是需要授权才可以看见的，所以目前新增菜单是看不见效果的<br></div>'
         // });
+        $('#pwd-set').click(function () {
+            dialog.pop({
+                'title': '修改密码',
+                'content': $(this).attr('data-url'),
+            });
+        });
 
     });
 </script>

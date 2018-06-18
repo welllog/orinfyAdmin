@@ -48,6 +48,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof OrException && $request->expectsJson()) { // 处理自自定义异常
+            return ajaxError($exception->getMessage());
+        }
         return parent::render($request, $exception);
     }
 }
