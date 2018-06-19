@@ -2,10 +2,10 @@
 
 @section("content")
 
-    <form class="layui-form layui-col-xs10">
+    <form class="layui-form">
         <div class="layui-form-item">
             <label class="layui-form-label">父级</label>
-            <div class="layui-input-block">
+            <div class="layui-input-inline">
                 <select name="pid" lay-verify="required">
                     <option data-level="0" value="0">默认顶级</option>
                 @foreach($rules as $rule)

@@ -16,11 +16,11 @@
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="layui-fluid">
+<body class="layui-fluid" style="padding: 0 8px;">
 <a class="layui-btn layui-btn-sm" style="position: fixed; right: 2px; opacity: 0.4; z-index: 10;" href="javascript:location.replace(location.href);" title="刷新">
     <i class="layui-icon">&#xe669;</i>
 </a>
-<div class="layui-row" style="padding: 6px 0;">
+<div style="padding: 6px 0;">
     @yield("content")
 </div>
 <script src="{{ asset('layadmin/layui/layui.js') }}"></script>
