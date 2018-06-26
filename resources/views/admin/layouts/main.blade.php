@@ -9,6 +9,9 @@
     <meta name="description" content="simple admin" />
     <meta name="keyword" content="layui,laravel,admin" />
     <link rel="stylesheet" href="{{ asset('layadmin/layui/css/layui.css') }}"/>
+    <style>
+        .or-mid {display: flex; display: -webkit-flex;justify-content: center;}
+    </style>
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('layadmin/index/or.ico') }}"/>
     @yield("css")
     <!--[if lt IE 9]>

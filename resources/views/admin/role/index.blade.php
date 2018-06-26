@@ -64,7 +64,7 @@
                 });
             });
 
-            var html = '<form class="layui-form"><br/>\n' +
+            var html = '<div class="or-mid"><form class="layui-form"><br/>\n' +
                 '  <div class="layui-form-item">\n' +
                 '    <label class="layui-form-label">角色名</label>\n' +
                 '    <div class="layui-input-inline">\n' +
@@ -77,7 +77,7 @@
                 '      <button type="reset" class="layui-btn layui-btn-primary">重置</button>\n' +
                 '    </div>\n' +
                 '  </div>\n' +
-                '</form>';
+                '</form></div>';
 
             $('.add').click(function () {
                 var _that = $(this);

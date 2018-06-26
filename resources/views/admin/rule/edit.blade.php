@@ -1,68 +1,69 @@
 @extends("admin.layouts.main")
 
 @section("content")
-
-    <form class="layui-form">
-        <div class="layui-form-item">
-            <label class="layui-form-label">父级</label>
-            <div class="layui-input-inline">
-                <select name="pid" lay-verify="required">
-                    <option data-level="0" value="0">默认顶级</option>
-                @foreach($rules as $rule)
-                    @if ($rule['level'] < 3)
-                    <option data-level="{{ $rule['level'] }}" value="{{ $rule['id'] }}">{{ $rule['ltitle'] }}</option>
-                    @endif
-                @endforeach
-                </select>
+    <div class="or-mid">
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label">父级</label>
+                <div class="layui-input-inline">
+                    <select name="pid" lay-verify="required">
+                        <option data-level="0" value="0">默认顶级</option>
+                    @foreach($rules as $rule)
+                        @if ($rule['level'] < 3)
+                        <option data-level="{{ $rule['level'] }}" value="{{ $rule['id'] }}">{{ $rule['ltitle'] }}</option>
+                        @endif
+                    @endforeach
+                    </select>
+                </div>
             </div>
-        </div>
 
-        <div class="layui-form-item">
-            <label class="layui-form-label">权限名称</label>
-            <div class="layui-input-inline">
-                <input type="text" class="layui-input" name="title" value="{{ $curRule->title }}" lay-verify="required" placeholder="请输入权限名">
+            <div class="layui-form-item">
+                <label class="layui-form-label">权限名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input" name="title" value="{{ $curRule->title }}" lay-verify="required" placeholder="请输入权限名">
+                </div>
             </div>
-        </div>
 
-        <div class="layui-form-item">
-            <label class="layui-form-label">权限类型</label>
-            <div class="layui-input-inline">
-                <select name="type" lay-verify="required" lay-filter="type">
-                    <option value="1">权限菜单</option>
-                    <option value="0">仅权限</option>
-                </select>
+            <div class="layui-form-item">
+                <label class="layui-form-label">权限类型</label>
+                <div class="layui-input-inline">
+                    <select name="type" lay-verify="required" lay-filter="type">
+                        <option value="1">权限菜单</option>
+                        <option value="0">仅权限</option>
+                    </select>
+                </div>
             </div>
-        </div>
 
-        <div class="layui-form-item">
-            <label class="layui-form-label">链接</label>
-            <div class="layui-input-inline">
-                <input type="text" class="layui-input" name="href" value="{{ $curRule->href }}" placeholder="请输入链接">
+            <div class="layui-form-item">
+                <label class="layui-form-label">链接</label>
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input" name="href" value="{{ $curRule->href }}" placeholder="请输入链接">
+                </div>
             </div>
-        </div>
 
-        <div class="layui-form-item">
-            <label class="layui-form-label">路由别名</label>
-            <div class="layui-input-inline">
-                <input type="text" class="layui-input" name="rule" value="{{ $curRule->rule }}" placeholder="请输入路由别名">
+            <div class="layui-form-item">
+                <label class="layui-form-label">路由别名</label>
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input" name="rule" value="{{ $curRule->rule }}" placeholder="请输入路由别名">
+                </div>
             </div>
-        </div>
 
-        <div class="layui-form-item">
-            <label class="layui-form-label">图标</label>
-            <div class="layui-input-inline">
-                <input type="text" class="layui-input" name="icon" value="{{ $curRule->icon }}" placeholder="请输入路由别名">
-                <span class="layui-word-aux">图标参考layui</span>
+            <div class="layui-form-item">
+                <label class="layui-form-label">图标</label>
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input" name="icon" value="{{ $curRule->icon }}" placeholder="请输入路由别名">
+                    <span class="layui-word-aux">图标参考layui</span>
+                </div>
             </div>
-        </div>
 
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="edit-rule" data-url="{{ route('rule.update', ['rule' => $curRule->id]) }}" data-type="PUT">立即提交</button>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="edit-rule" data-url="{{ route('rule.update', ['rule' => $curRule->id]) }}" data-type="PUT">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 @endsection
 
 @section("js")

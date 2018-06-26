@@ -27,7 +27,7 @@
             <th>用户名</th>
             <th>是否启用</th>
             <th>手机号</th>
-            <th style="width: 10px !important;">邮箱</th>
+            <th>邮箱</th>
             <th>角色</th>
             <th>创建时间</th>
             <th>操作</th>
@@ -41,8 +41,8 @@
             <td><input data-url="{{ route('user.active', ['user' => $user->id]) }}" data-type="PATCH" type="checkbox" name="status"
                        lay-skin="switch" lay-filter="active" lay-text="启用|禁用" @if($user->status==1) checked @endif></td>
             <td>{{ $user->mobile }}</td>
-            <td class="layui-elip">{{ $user->email }}</td>
-            <td class="layui-elip">@foreach($user->roles as $role) {{ $role->name . '|' }} @endforeach</td>
+            <td><span class="layui-elip" style="display: inline-block; width: 150px">{{ $user->email }}</span></td>
+            <td><span style="display: inline-block; width: 150px;" class="layui-elip">@foreach($user->roles as $role) {{ $role->name . '|' }} @endforeach</span></td>
             <td>{{ $user->created_at->format('Y-m-d') }}</td>
             <td>
                 <div class="layui-btn-group">

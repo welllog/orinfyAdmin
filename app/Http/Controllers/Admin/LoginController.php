@@ -15,6 +15,7 @@ class LoginController extends Controller
 
     public function index()
     {
+        if (Auth::guard()->check()) return redirect()->route('index');
         return view($this->v . 'login');
     }
 
@@ -28,7 +29,7 @@ class LoginController extends Controller
             'code.captcha' => '验证码错误',
         ]);
         $error = $validator->errors()->first();
-        if ($error) throw new OrException($error);
+        if ($error) return ajaxError($error);
         $remeber = $request->filled('remember') ? true : false;
         $userService->auth($request->username, $request->password, $remeber);
         return ajaxSuccess();
