@@ -179,6 +179,20 @@
             ori.submit($(this));
         });
 
+        // var ws = new WebSocket("ws://0.0.0.0:9501");
+        // ws.onopen = function () {
+        //     console.log('连接成功');
+        //     ws.send('查看信息id');
+        // };
+        // ws.onmessage = function(evt) {
+        //     console.log( "接收到消息: " + evt.data);
+        // };
+        // ws.onclose = function(evt) {
+        //     console.log("连接关闭");
+        // };
+        // ws.onerror = function () {
+        //     console.log('socket服务异常');
+        // }
     });
 </script>
 </body>

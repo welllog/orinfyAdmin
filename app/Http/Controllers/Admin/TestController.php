@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -13,6 +14,11 @@ class TestController extends Controller
 {
     public function test(Request $request)
     {
+//        for ($i = 0; $i < 10; ++$i) {
+//            Redis::publish('msg', '消息：'. $i);
+//        }
+        Redis::publish('msg', '消息：1');
+        exit;
 
         $re = DB::table('rules')->pluck('id');
 //        session(['ls' => 123]);

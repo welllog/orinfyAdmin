@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2cbb2430e6b0f6ff6db1fc8798c5511a",
+    "content-hash": "c8ac7cdbaf777acbd6dfeb4fb8167276",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -2924,6 +2924,31 @@
             "time": "2017-07-22T11:58:36+00:00"
         },
         {
+            "name": "eaglewu/swoole-ide-helper",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eaglewu/swoole-ide-helper.git",
+                "reference": "a0d4c3709be05e3106880a8f05da69cf3544da71"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/eaglewu/swoole-ide-helper/a0d4c3709be05e3106880a8f05da69cf3544da71.zip",
+                "reference": "a0d4c3709be05e3106880a8f05da69cf3544da71",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "eagle",
+                    "email": "eaglewudi@gmail.com"
+                }
+            ],
+            "description": "Swoole 在IDE下自动识别类、函数、宏，自动补全函数名",
+            "time": "2018-06-25T03:17:20+00:00"
+        },
+        {
             "name": "filp/whoops",
             "version": "2.2.0",
             "source": {
@@ -4661,7 +4686,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "eaglewu/swoole-ide-helper": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
