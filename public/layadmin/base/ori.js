@@ -89,7 +89,7 @@ layui.define('dialog', function(exports){
                 errcallable && errcallable(errMsg);
             },
             success: function (msg, data, meta) {
-                dialog.success('', function (msg, data, meta) {
+                dialog.success('', function () {
                     dialog.closeCurIf();
                     succallable && succallable(msg, data, meta);
                 });
